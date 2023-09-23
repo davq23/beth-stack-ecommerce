@@ -9,9 +9,6 @@ export const Navbar = () => {
             <li class="nav-item">
                 <a class="nav-link" href="/">My Store</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/products">Products</a>
-            </li>
         </ul>
         <div class="d-flex justify-content-center my-1 align-items-center">
             <SearchBar className="position-relative mb-0" swap='outerHTML' target='find .dropdown-menu' endpoint='/products/search' placeholder='Search for a product'>
