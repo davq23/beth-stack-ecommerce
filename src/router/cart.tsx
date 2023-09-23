@@ -51,7 +51,17 @@ const cartRoutes = new Elysia().use(cookie()).get('/cart/checkout', ({set}) => {
             }
         },
     },
-    app => app.post('/checkout', ({ body, headers, set }) => {
+    app => app.post('/checkout', ({ body, headers, set, setCookie }) => {
+        if (body.finishCheckout) {
+            // TODO: save current cart
+
+            // Reset cart
+            const emptyCart = {...body, products: []};
+            setCookie('cart', JSON.stringify(emptyCart));
+            return <BaseTemplate>
+                <h1 data-hx-trigger="load delay:1s" data-hx-get="/" data-hx-target="body" data-hx-push-url="true">Thank you for your purchase!</h1>
+            </BaseTemplate>
+        }
         if (headers['hx-request']) {
             set.headers['HX-Trigger'] = 'showCartModal,updateResultFooter';
             return <ShoppingCart
@@ -82,7 +92,7 @@ const cartRoutes = new Elysia().use(cookie()).get('/cart/checkout', ({set}) => {
                     footer={
                         <div>
                             <div class="text-end">
-                                <button class="btn btn-warning">Finish checkout</button>
+                                <input type="submit" class="btn btn-warning" name="finishCheckout" value="Finish checkout" />
                             </div>
                         </div>
                     }
@@ -114,13 +124,7 @@ const cartRoutes = new Elysia().use(cookie()).get('/cart/checkout', ({set}) => {
                 rushMode={body.rushMode}
             />
         }
-    ).post('/finish-checkout', ({ body, diContainer }) => {
-        const cartRepository = diContainer.get<CartRepository>('cartRepository');
-
-        // TODO: Create invoice
-
-        cartRepository.save(body as Cart);
-    })
+    ),
 );
 
 export default cartRoutes;
