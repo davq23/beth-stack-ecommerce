@@ -60,7 +60,13 @@ const cartRoutes = new Elysia().use(cookie()).get('/cart/checkout', ({set}) => {
             setCookie('cart', JSON.stringify(emptyCart));
             return <BaseTemplate>
                 <div class="container-fluid d-flex h-100 w-100 justify-content-center align-items-center">
-                    <h1 data-hx-trigger="load delay:1s" data-hx-get="/" data-hx-target="body" data-hx-push-url="true">Thank you for your purchase!</h1>
+                    <h1
+                        data-hx-trigger="load delay:1s"
+                        data-hx-get="/"
+                        data-hx-target="body"
+                        data-hx-push-url="true"
+                        class="fw-bold text-success"
+                    >Thank you for your purchase!</h1>
                 </div>
             </BaseTemplate>
         }
