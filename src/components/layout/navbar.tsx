@@ -7,7 +7,7 @@ export const Navbar = () => {
     return <nav class="navbar navbar-expand navbar-light bg-light justify-content-between mx-1 mb-2">
         <ul class="nav navbar-nav" data-hx-boost="true">
             <li class="nav-item">
-                <a class="nav-link" href="/">My Store</a>
+                <a class="nav-link" href="/">BETH Stack E-commerce</a>
             </li>
         </ul>
         <div class="d-flex justify-content-center my-1 align-items-center">
