@@ -109,8 +109,8 @@ const cartRoutes = new Elysia().use(cookie()).get('/cart/checkout', ({set}) => {
         </BaseTemplate>
     }).post(
         '/get-totals',
-        ({ body, set, path }) => {
-            const total = Cart.getTotalFromCart(body as Cart);
+        ({ body, set }) => {
+            const total = Cart.getTotalFromCart(body as Cart).toFixed(2);
 
             if (!body.currency) {
                 body.currency = 'USD';

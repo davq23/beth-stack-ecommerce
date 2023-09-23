@@ -41,7 +41,7 @@ const cartItemRoutes = new Elysia().use(cookie()).decorate({ diContainer }).grou
                         cart: JSON.stringify(body.cart),
                     },
                     updateCartTotal: {
-                        total: Cart.getTotalFromCart(body.cart as Cart),
+                        total: Cart.getTotalFromCart(body.cart as Cart).toFixed(2),
                         currency: body.cart.currency ?? 'USD',
                     }
                 }),
