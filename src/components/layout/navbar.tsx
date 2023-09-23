@@ -32,9 +32,10 @@ export const Navbar = () => {
             data-hx-target="#shopping-cart-body"
             type="button"
             _="
-            on updateCartTotal(total, currency) put total into .total in me put currency into .currency in me end
-                on showCartModal call bootstrap.Modal.getOrCreateInstance(@data-hx-modal).show() end
-            "
+        on updateCartTotal(total, currency) put total into .total in me put currency into .currency in me end
+            on showCartModal call bootstrap.Modal.getOrCreateInstance(@data-hx-modal).show() end
+
+        on click toggle @disabled until htmx:afterOnLoad"
         >
             <i class="bi bi-cart"></i>
             <span class="currency"></span>

@@ -38,8 +38,7 @@ export const BaseTemplate = ({ children }: elements.Children) => (
                     .dropdown-menu {
                         opacity: 1;
                         transition: opacity 300ms ease-in;
-                    }
-                    `}
+                    }`}
                 </style>
             </head>
             <body
