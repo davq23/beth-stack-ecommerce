@@ -37,7 +37,7 @@ const cartItemRoutes = new Elysia().use(cookie()).decorate({ diContainer }).grou
         return new Response(null, {
             headers: {
                 'HX-Trigger': JSON.stringify({
-                    'updateCart': {
+                    updateCart: {
                         cart: JSON.stringify(body.cart),
                     },
                     updateCartTotal: {
