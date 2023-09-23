@@ -19,23 +19,44 @@ export const BaseTemplate = ({ children }: elements.Children) => (
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
                 <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
                 <script src="https://unpkg.com/hyperscript.org@0.9.11"></script>
+                <style>
+                    {`#main.htmx-added {
+                        opacity: 0;
+                        transition: opacity 300ms ease-in;
+                    }
+                    #main.htmx-swapping {
+                        opacity: 0;
+                        transition: opacity 300ms ease-in;
+                    }
+                    #main {
+                        opacity: 1;
+                        transition: opacity 100ms ease-in;
+                    }
+                    .dropdown-menu.htmx-swapping {
+                        opacity: 0;
+                    }
+                    .dropdown-menu {
+                        optacity: 1;
+                        transition: opacity 100ms ease-in;
+                    }
+                    `}
+                </style>
             </head>
             <body
-                _="
-            on load
-                if cookies.cart then
-                    send setCart(cart: cookies.cart) to #cart-button
-                else 
-                    set cookies.cart to {value: '{&quot;products&quot;: []}', maxAge: 0, path: '/'}
-                    send setCart(cart: cookies.cart) to #cart-button
-                end
-            end
+                _="on load
+    if cookies.cart then
+        send setCart(cart: cookies.cart) to #cart-button
+    else 
+        set cookies.cart to {value: '{&quot;products&quot;: []}', maxAge: 0, path: '/'}
+        send setCart(cart: cookies.cart) to #cart-button
+    end
+end
 
-            on updateCart(cart)
-                set cookies.cart to {value: cart, maxAge: 0, path: '/'}
-                then send setCart(cart: cart) to #cart-button
-            end
-        ">
+on updateCart(cart)
+    set cookies.cart to {value: cart, maxAge: 0, path: '/'}
+    then send setCart(cart: cart) to #cart-button
+end"
+        >
                 <Navbar />
                 <main id="main">
                     {children}
