@@ -59,7 +59,9 @@ const cartRoutes = new Elysia().use(cookie()).get('/cart/checkout', ({set}) => {
             const emptyCart = {...body, products: []};
             setCookie('cart', JSON.stringify(emptyCart));
             return <BaseTemplate>
-                <h1 data-hx-trigger="load delay:1s" data-hx-get="/" data-hx-target="body" data-hx-push-url="true">Thank you for your purchase!</h1>
+                <div class="container-fluid d-flex h-100 w-100 justify-content-center align-items-center">
+                    <h1 data-hx-trigger="load delay:1s" data-hx-get="/" data-hx-target="body" data-hx-push-url="true">Thank you for your purchase!</h1>
+                </div>
             </BaseTemplate>
         }
         if (headers['hx-request']) {
@@ -69,11 +71,11 @@ const cartRoutes = new Elysia().use(cookie()).get('/cart/checkout', ({set}) => {
                 rushMode={body.rushMode}
                 currency={body.currency}
                 summary={<div></div>}
-                footer={<div class="text-end">
+                footer={body.products.length > 0 ? <div class="text-end">
                     <form action="/cart/checkout" method="post">
                         <button type="submit" class="btn btn-primary">Go to checkout</button>
                     </form>
-                </div>}
+                </div> : ''}
             />;
         }
 
@@ -89,12 +91,12 @@ const cartRoutes = new Elysia().use(cookie()).get('/cart/checkout', ({set}) => {
                         rushMode={body.rushMode}
                         currency={body.currency}
                     />}
-                    footer={
+                    footer={ body.products.length > 0 ?
                         <div>
                             <div class="text-end">
                                 <input type="submit" class="btn btn-warning" name="finishCheckout" value="Finish checkout" />
                             </div>
-                        </div>
+                        </div> : ''
                     }
                 />
             </div>
