@@ -8,7 +8,7 @@ Inspired by [this video](https://www.youtube.com/watch?v=cpzowDDJj24)
 
 Small web app built on [Bun](https://bun.sh/), [ElysiaJS](https://elysiajs.com/), [HTMX](https://htmx.org/) and [Hyperscript](https://hyperscript.org/).
 
-Just build out of interest into the possibility of writing applications with minimum client-side Javascript.
+Just built out of interest into the possibility of writing applications with minimum client-side Javascript.
 
 ## TODO
 
