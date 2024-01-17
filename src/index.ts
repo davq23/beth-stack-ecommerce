@@ -4,7 +4,6 @@ import productRoutes from "./router/products";
 import cartRoutes from "./router/cart";
 import homeRoutes from "./router/home";
 import cartItemRoutes from './router/cart-item';
-import authRoutes from './router/auth';
 import {html} from '@elysiajs/html';
 
 const app = new Elysia();
