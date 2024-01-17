@@ -6,8 +6,8 @@ import {html} from '@elysiajs/html';
 
 const homeRoutes = new Elysia().group(
     '/',
-    app => app.use(html()).get(
-        '',
+    app => app.get(
+        '/',
         () => <BaseTemplate>
             <div class="container">
                 <div class="card">

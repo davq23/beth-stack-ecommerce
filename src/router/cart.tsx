@@ -1,17 +1,15 @@
 import {html} from "@elysiajs/html";
 import Elysia, { Context, t } from "elysia";
 import { BaseTemplate } from "../components/layout/base-template";
-import { Navbar } from "../components/layout/navbar";
 import { ShoppingCart } from "../components/shopping-cart/shopping-cart";
 import { transformURLEncodedToJSObject } from "../libs/utils";
 import { ShoppingCartSummary } from "../components/shopping-cart/shopping-cart-summary";
 import { diContainer } from "../config/container";
 import { GetItemsRequestBodyModel } from "../schema/schemas";
-import { CartRepository } from "../repositories/cart.repository";
 import Cart from "../models/Cart";
 import cookie from "@elysiajs/cookie";
-
 import * as elements from 'typed-html';
+import { addBaseUrl } from "../config/utilities";
 
 const cartRoutes = new Elysia().use(cookie()).get('/cart/checkout', ({set}) => {
     set.redirect = '/';
@@ -62,7 +60,7 @@ const cartRoutes = new Elysia().use(cookie()).get('/cart/checkout', ({set}) => {
                 <div class="container-fluid d-flex h-100 w-100 justify-content-center align-items-center">
                     <h1
                         data-hx-trigger="load delay:1s"
-                        data-hx-get="/"
+                        data-hx-get={addBaseUrl('')}
                         data-hx-target="body"
                         data-hx-push-url="true"
                         class="fw-bold text-success"
@@ -78,7 +76,7 @@ const cartRoutes = new Elysia().use(cookie()).get('/cart/checkout', ({set}) => {
                 currency={body.currency}
                 summary={<div></div>}
                 footer={body.products.length > 0 ? <div class="text-end">
-                    <form action="/cart/checkout" method="post">
+                    <form action={addBaseUrl('cart/checkout')} method="post">
                         <button type="submit" class="btn btn-primary">Go to checkout</button>
                     </form>
                 </div> : ''}

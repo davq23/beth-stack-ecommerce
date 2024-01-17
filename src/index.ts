@@ -4,16 +4,18 @@ import productRoutes from "./router/products";
 import cartRoutes from "./router/cart";
 import homeRoutes from "./router/home";
 import cartItemRoutes from './router/cart-item';
+import authRoutes from './router/auth';
+import {html} from '@elysiajs/html';
 
-const app =  new Elysia().onAfterHandle(({set}) => {
-    // This is a purely hypermedia app
-    set.headers['Content-Type'] = 'text/html;charset=utf-8';
-});
+const app = new Elysia();
+
+app.use(html());
 
 app.use(homeRoutes);
 app.use(productRoutes);
 app.use(cartRoutes);
 app.use(cartItemRoutes);
+// app.use(authRoutes);
 
 app.listen(3000, function () {
     // Check that this works

@@ -7,6 +7,8 @@ import { BaseTemplate } from "../components/layout/base-template";
 import * as elements from 'typed-html';
 
 import { diContainer } from "../config/container";
+import { html } from "@elysiajs/html";
+import { addBaseUrl } from "../config/utilities";
 
 const productSearchQuery = t.Object({
     q: t.String(),
@@ -35,7 +37,7 @@ const productRoutes = new Elysia().decorate({ diContainer }).group(
 
         const productResults = await productRepository.search(query.q);
 
-        return <SearchResults results={productResults.map(({name, id}) => ({name, href: `/products/${id}`}))} />
+        return <SearchResults results={productResults.map(({name, id}) => ({name, href: addBaseUrl(`products/${id}`)}))} />
     }, {
         query: productSearchQuery,
     })

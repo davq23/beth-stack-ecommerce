@@ -3,6 +3,7 @@ import { Product } from "../../models/Product";
 import { ProductList } from "../product/product-list";
 import { ShoppingCartOptions } from "./shopping-cart-options";
 import { ShoppingCartSummary } from "./shopping-cart-summary";
+import { addBaseUrl } from "../../config/utilities";
 
 export interface BaseShoppingCartProps {
     currency: string|undefined
@@ -29,10 +30,10 @@ export const ShoppingCart = ({
             _="
             on updateCartTotal send updateCartTotal(total: event.detail.total, currency: event.detail.currency) to #cart-button end
             "
-            data-hx-post="/cart/get-totals"
+            data-hx-post={addBaseUrl('cart/get-totals')}
             data-hx-trigger="change,updateResultFooter"
             data-hx-target="find .results"
-            action="/cart/checkout"
+            action={addBaseUrl("cart/checkout")}
             method="POST"
         >
             <section class="col">

@@ -1,4 +1,5 @@
 
+import { addBaseUrl } from '../../config/utilities';
 import { Product } from '../../models/Product';
 import * as elements from 'typed-html';
 
@@ -35,7 +36,7 @@ export const ProductView = ({product}: {product: Product}) => (
                             <button
                                 type="button"
                                 class="btn btn-success"
-                                data-hx-post="/cart-items/add"
+                                data-hx-post={addBaseUrl('cart-items/add')}
                                 data-hx-vals={JSON.stringify({ id: product.id })}
                                 data-hx-request='"credentials": true'
                                 data-hx-swap="none"

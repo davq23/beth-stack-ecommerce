@@ -1,4 +1,5 @@
 
+import { addBaseUrl } from '../../config/utilities';
 import { SearchBar } from '../generic/search-bar';
 
 import * as elements from 'typed-html';
@@ -7,11 +8,11 @@ export const Navbar = () => {
     return <nav class="navbar navbar-expand navbar-light bg-light justify-content-between mx-1 mb-2">
         <ul class="nav navbar-nav" data-hx-boost="true">
             <li class="nav-item">
-                <a class="nav-link" href="/">BETH Stack E-commerce</a>
+                <a class="nav-link" href={addBaseUrl('')}>BETH Stack E-commerce</a>
             </li>
         </ul>
         <div class="d-flex justify-content-center my-1 align-items-center">
-            <SearchBar className="position-relative mb-0" swap='outerHTML' target='find .dropdown-menu' endpoint='/products/search' placeholder='Search for a product'>
+            <SearchBar className="position-relative mb-0" swap='outerHTML' target='find .dropdown-menu' endpoint={addBaseUrl('products/search')} placeholder='Search for a product'>
                 <div
                     class="dropdown"
                     data-hx-boost="true"
@@ -27,7 +28,7 @@ export const Navbar = () => {
         <button
             id="cart-button"
             class="btn btn-primary text-end cart-button"
-            data-hx-post="/cart/checkout"
+            data-hx-post={addBaseUrl('cart/checkout')}
             data-hx-modal="#shopping-cart"
             data-hx-target="#shopping-cart-body"
             type="button"
