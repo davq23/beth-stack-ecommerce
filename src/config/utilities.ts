@@ -4,6 +4,11 @@ const availableCurrencies = {
     'CAD': 'CAD',
 };
 
+const addBaseUrl = (url: string): string => {
+    return `${process.env.base_url}${url}`
+}
+
 export  {
-    availableCurrencies
+    availableCurrencies,
+    addBaseUrl,
 };
