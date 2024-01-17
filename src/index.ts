@@ -17,7 +17,10 @@ app.use(cartRoutes);
 app.use(cartItemRoutes);
 // app.use(authRoutes);
 
-app.listen(3000, function () {
+app.listen({
+    port: process.env.port,
+    hostname: process.env.hostname,
+}, function () {
     // Check that this works
     console.log(`Elysia running at http://${app.server?.hostname}:${app.server?.port}`);
 });
