@@ -12,7 +12,7 @@ export const Navbar = () => {
             </li>
         </ul>
         <div class="d-flex justify-content-center my-1 align-items-center">
-            <SearchBar className="position-relative mb-0" swap='outerHTML' target='find .dropdown-menu' endpoint={addBaseUrl('products/search')} placeholder='Search for a product'>
+            <SearchBar className="position-relative mb-0" swap='outerHTML' target='find .dropdown-menu' endpoint={addBaseUrl('products/search')} placeholder='Search for a product' inputDelayMs={300}>
                 <div
                     class="dropdown"
                     data-hx-boost="true"
