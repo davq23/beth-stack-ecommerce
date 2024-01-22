@@ -4,16 +4,17 @@ import productRoutes from "./router/products";
 import cartRoutes from "./router/cart";
 import homeRoutes from "./router/home";
 import cartItemRoutes from './router/cart-item';
-import {html} from '@elysiajs/html';
 
 const app = new Elysia();
 
-
+app.onRequest(({set}) => {
+    set.headers['Content-Type'] = 'text/html';
+});
 app.use(homeRoutes);
 app.use(productRoutes);
 app.use(cartRoutes);
 app.use(cartItemRoutes);
-app.use(html());
+
 
 // app.use(authRoutes);
 
