@@ -8,12 +8,13 @@ import {html} from '@elysiajs/html';
 
 const app = new Elysia();
 
-app.use(html());
 
 app.use(homeRoutes);
 app.use(productRoutes);
 app.use(cartRoutes);
 app.use(cartItemRoutes);
+app.use(html());
+
 // app.use(authRoutes);
 
 app.listen({
